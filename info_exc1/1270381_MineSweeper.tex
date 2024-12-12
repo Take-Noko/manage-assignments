@@ -1,0 +1,113 @@
+\documentclass{jlreq}
+\usepackage{listings,jvlisting}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\title{情報学群実験１ \\ \vspace{0.3cm} 最終レポート}
+\author{1270381 宮本武}
+\date{2024年8月2日}
+
+\renewcommand{\lstlistingname}{コード}
+
+\begin{document}
+\maketitle
+\setcounter{section}{-1}
+
+\section{概要}
+
+% \begin{enumerate}
+% \end{enumerate}
+
+\section{データの表現方法}
+マインスイーパーの全体的な仕様としてMineSweeperクラスのint型2次元配列のtableフィールドはパネルの状態を保存するために使用した．
+具体的には，縦方向をy横方向をxとして，座標(x,y)に対応するパネルの状態はtable[y][x]に格納し，非負整数を安全なパネル，負の整数を地雷が存在するパネルとした．
+盤面情報の管理表を以下に示す．
+\vspace{0.5cm}
+\begin{center}
+    \begin{table}[h]
+        \begin{tabular}{lccccc} \toprule[0.5mm]
+            整数値 & \multirow{2}{*}{-2} & \multirow{2}{*}{-1} & \multirow{2}{*}{0} & \multirow{2}{*}{1} & \multirow{2}{*}{2} \\
+            (table[y][x]) \\ \hline
+            状態 & 旗付き地雷パネル & 地雷パネル & 安全パネル & 旗付きパネル & 開示済みパネル \\ \hline
+            実質 & \multicolumn{2}{c|}{地雷パネル} & \multicolumn{3}{c}{安全パネル} \\ \hline
+        \end{tabular}
+        \caption{整数によるパネルの状態の表現方法}
+    \end{table}
+\end{center}
+
+\section{仕様の実現}
+
+\subsection{仕様1(地雷の配置方法)}
+まず，地雷をランダムに配置するためにjava.util.Randomクラスを用いた．
+1つの地雷に対して2つの乱数x,yを地雷の設置座標として取得し，
+table[y][x]に-1を代入した．
+これを全ての地雷について実行した．
+
+しかしランダムな地雷の設置では，設置座標の重複が考えられる．この問題を解消するために，
+座標(x, y)に既に地雷が存在する場合は，隣のパネルに地雷を設置するようにした(コード\ref{code:setBombs}参照)．
+これを実現するために，剰余を使用して隣のパネルの座標がtable配列からはみ出すことがないように工夫した．
+
+\begin{lstlisting}[caption=Javaソースコード,label=code:setBombs,language=java,frame={tb},breaklines=true,lineskip=-0.5ex,numbers=left,stringstyle={\small\ttfamily}]
+// 指定している座標に地雷がなくなるまで座標を更新
+while(this.table[y][x] == -1 || (x == fx && y == fy)){
+    x = (x + 1) % this.width;
+    y = (x == 0) ? (y + 1) % this.height : y;
+}
+\end{lstlisting}
+
+\subsection{仕様2(初めのパネルへの地雷の設置を回避)}
+初めて開くパネルが地雷になることを回避するために，パネルを開いた後に地雷の設置を行うようにした．
+初めてパネルが開かれたタイミングでinitTableメソッドの実行を行い，その座標を避けるようにして地雷を設置することによって，初めのパネルで地雷を踏むことは無くなった．
+回避すべき座標は新たなフィールドfirstLocに要素数2のint型配列として保存し，初期値がnull値であることよって，初めてパネルがクリックされたことを検知することができる．
+実際の回避の処理としては，コード\ref{code:setBombs}のwhile文の条件部にて．初めにクリックしたパネルの座標を示すfx, fyに等しい場合は隣のパネルに移る処理が行われるようになっている．
+
+\subsection{仕様3(パネルの開示)}
+openTileメソッドでは，旗付きではない地雷パネルまたは旗付きでない安全パネルがクリックされたときに限りパネルを開く処理を行う．
+if文を用いてクリックされたパネルの状態によって2つの処理への分岐を行う．
+地雷パネルの処理は仕様4，安全地雷パネルの処理は追加仕様を参照．
+
+
+\subsection{仕様4(地雷を踏んだ際の全開示)}
+全てのパネルが開かれる処理はopenAllTilesメソッドに記述している．
+パネルが開かれたことを示すために，setTextToTileメソッドを使用した．
+このとき，周囲の地雷の数を表示させる必要があるが，実行時間を減らすため，この情報を保存しておく新たなフィールドnumberOfAroundMinesを作成した．
+初めてパネルが開かれた際に地雷の設置と同時に各パネルの周囲の地雷の数の計算も行われ，numberOfAroundMinesに保存される(コード\ref{code:countMines}参照)．
+これはtableと同じ構造であるため，容易に表示させる値を取得することができる．
+実際に開く際，開示済みのパネルは開く必要はなく，地雷のパネルは地雷の数を表示させないため，状態による条件分岐によって，表示させる文字列を変更するなど，処理の内容を変更している．
+
+\begin{lstlisting}[caption=Javaソースコード,label=code:countMines,language=java,frame={tb},breaklines=true,lineskip=-0.5ex,numbers=left,stringstyle={\small\ttfamily}]
+// 以下を地雷ごとに実行
+for(int j = 0; j < 9; j++){
+    try{
+        this.numberOfAroundMines[y + j / 3 - 1][x + j % 3 - 1]++;
+    } catch(ArrayIndexOutOfBoundsException e){
+        continue;
+    }
+}
+\end{lstlisting}
+
+\subsection{仕様5(旗を立てる，旗を立てたら開示不可)}
+旗を立てる処理はsetFlagメソッドで行う．対象のパネルが旗有りか無しか，どの状態を取るかによって条件分岐を行い，"F"または""を表示させる．
+このとき，同時に対象のパネルに対応するtable配列の要素にデータの表現方法にて示している適切な整数を代入する．
+そして，パネルが旗付きの場合，状態は1または-2であり，これはopenTileメソッドでは無視されるため，パネルを開くことができない．
+
+\subsection{仕様6(ダイヤログの表示)}
+クリアのダイヤログ表示は新たなint型のフィールドnumberOfOpenableTilesが0になった場合に実行される．
+このフィールドには残りの安全パネルの数が記録されており，安全パネルを1つ開くことで1値が減る．
+失敗のダイヤログ表示はopenTileメソッドにて，パネルの状態が-1である場合に実行される．
+
+\section{追加仕様}
+\subsection{パネルの文字及び背景色の変更}
+黒字の数字だけでは盤面全体の見通しが非常に悪く，快適に遊ぶことができない．
+そのため，パネルの周囲の地雷の数の違いが明確に分かるように，安全パネルでは1～8種類の色で数字を区別した．
+また，0のパネルは敢えて数字を伏せることで盤面全体の見通しをクリアにした．更に，地雷のデザインを工夫することで，爆弾に近い見た目になり，
+よりデザインのクオリティが上がった．そして，開示済みのパネルの背景色を暗くすることで，開かれていないパネルが明確になった．
+これらはButtonクラスのsetForeground, setBackgroundメソッドを使用して変更した．
+
+\subsection{連鎖開示}
+固まった0の安全パネルの開示など，煩雑な作業を
+openTileメソッドとは別にchainOpenという，
+
+\subsection{初期パネル開示時の強制連鎖}
+
+\end{document}

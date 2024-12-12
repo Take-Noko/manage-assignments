@@ -1,0 +1,115 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.11.19 05:18:05 =~=~=~=~=~=~=~=~=~=~=~=
+
+router6>
+router6>enable
+% No password set
+router6>enable
+% No password set
+router6>en
+% No password set
+router6>
+router6>
+router6>
+router6>
+router6>
+router6>
+router6>
+router6>
+router6>
+router6>configure terial   minal
+           ^
+% Invalid input detected at '^' marker.
+
+router6>username exp password 0 root00
+         ^
+% Invalid input detected at '^' marker.
+
+router6>enable exp root00
+               ^
+% Invalid input detected at '^' marker.
+
+router6>enable
+Password: 
+Password: 
+Password: 
+% Bad passwords
+
+router6>enable
+Password: 
+Password: 
+% Password:  timeout expired!
+Password: 
+% Password:  timeout expired!
+% Bad passwords
+
+router6>root0     enable
+Password: 
+router6#
+router6#configure           conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+router6(config)#iinterfacega            interfacw e fasr\t   tethernet 0 1
+router6(config-if)#ip adde red sss 172.31       172,31   .31.21.4 255.255.0.0 255.255.0.0 1 255.255.0.0
+% 172.31.0.0 overlaps with FastEthernet0
+router6(config-if)#ip address 172.31.21.1 255.255.0.00.0 2.05.05.0
+router6(config-if)#no shit  utdoe wn
+router6(config-if)#exit
+router6(config)#exit
+router6#; conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+router6(config)#intr    inter \  face fa2
+router6(config-if)#wei   swich\\    tchpore t access vlan 1
+router6(config-if)#no shut  down
+router6(config-if)#exit
+router6(config)#interface vlan1
+router6(config-if)#ip address 192.168.1.16 255.255.255.0
+router6(config-if)#no shutdown
+router6(config-if)#exit
+router6(config)#exit
+router6#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+router6(config)#ip route        exit
+router6#exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router6 tty5 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+

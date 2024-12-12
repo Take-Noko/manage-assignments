@@ -1,0 +1,67 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.11.15 07:14:26 =~=~=~=~=~=~=~=~=~=~=~=
+
+router6>
+router6>en nable      enable  
+Password: 
+router6#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+router6(config)#interface fastethernet 0
+router6(config-if)#ip address 172.31.22.1 255.255.255.0                                    exit
+router6(config)#exitinterface fastethernet 0exit                    interface fastethernet 0 1
+router6(config-if)#ip address 172.31.22.0 1 255.255.255.0
+router6(config-if)#ip address 172.31.22.1 255.255.255.0.0 2.0
+router6(config-if)#ip address 172.31.22.1 255.255.252.0.0 .0 5.05.0.255.0 
+Bad mask 0xFF19FF00 for address 172.31.22.1
+router6(config-if)#ip address 172.31.22.1 255.25.255.05.252.05.0
+router6(config-if)#ip address 172.31.22.1 255.255.255.0                                    no shutdown
+router6(config-if)#exit
+*Nov 15 07:21:13.803: %LINK-3-UPDOWN: Interface FastEthernet1, changed state to up
+router6(config-if)#exit
+router6(config)#exit
+router6#
+*Nov 15 07:21:15.695: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet1, changed state to up
+router6#
+*Nov 15 07:21:17.623: %SYS-5-CONFIG_I: Configured from console by console
+router6#eix  xit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router6 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+

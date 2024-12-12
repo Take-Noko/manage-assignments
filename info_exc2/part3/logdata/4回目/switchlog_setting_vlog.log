@@ -1,0 +1,186 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.11.15 06:45:33 =~=~=~=~=~=~=~=~=~=~=~=
+
+switch6(config)#
+switch6(config)#configur  ure terminal
+                        ^
+% Invalid input detected at '^' marker.
+
+switch6(config)#exit
+switch6#co
+*Mar  1 02:10:04.509: %SYS-5-CONFIG_I: Configured from console by console
+switch6#confi     configure tern minal
+Enter configuration commands, one per line.  End with CNTL/Z.
+switch6(config)#vlan XXX   22  
+switch6(config-vlan)#name group 12
+                                ^
+% Invalid input detected at '^' marker.
+
+switch6(config-vlan)#namegroup 12
+                         ^
+% Invalid input detected at '^' marker.
+
+switch6(config-vlan)#name gou  ou rou    roup12
+switch6(config-vlan)#exit
+switch6(config)#int range fa0/13-18
+switch6(config-if-range)#switchport mode access
+switch6(config-if-range)#swic tch  ort   port access V vlan 22
+switch6(config-if-range)#e no spanning-tree no      vlan 22
+% Command exited out of interface range and its sub-modes.
+  Not executing the command for second and later interfaces
+switch6(config)#no spanning-tree vlan 22
+switch6(config)#exit
+switch6#
+*Mar  1 02:19:47.366: %SYS-5-CONFIG_I: Configured from console by console
+switch6#
+*Mar  1 02:21:08.098: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/3, changed state to down
+*Mar  1 02:21:09.104: %LINK-3-UPDOWN: Interface FastEthernet0/3, changed state to down
+switch6#
+*Mar  1 02:21:13.374: %LINK-3-UPDOWN: Interface FastEthernet0/13, changed state to up
+switch6#
+*Mar  1 02:21:14.012: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/7, changed state to down
+*Mar  1 02:21:14.381: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/13, changed state to up
+*Mar  1 02:21:15.018: %LINK-3-UPDOWN: Interface FastEthernet0/7, changed state to down
+switch6#
+*Mar  1 02:21:25.143: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/5, changed state to down
+*Mar  1 02:21:26.150: %LINK-3-UPDOWN: Interface FastEthernet0/5, changed state to down
+switch6#
+*Mar  1 02:21:26.729: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/11, changed state to up
+switch6#
+*Mar  1 02:21:28.616: %LINK-3-UPDOWN: Interface FastEthernet0/11, changed state to up
+switch6#
+*Mar  1 02:21:29.094: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to down
+*Mar  1 02:21:29.329: %LINK-3-UPDOWN: Interface FastEthernet0/7, changed state to up
+switch6#
+*Mar  1 02:21:30.093: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+*Mar  1 02:21:30.336: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/7, changed state to up
+*Mar  1 02:21:31.099: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to down
+switch6#
+*Mar  1 02:21:38.305: %LINK-3-UPDOWN: Interface FastEthernet0/9, changed state to up
+*Mar  1 02:21:39.312: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/9, changed state to up
+switch6#
+*Mar  1 02:23:19.035: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/7, changed state to down
+switch6#
+*Mar  1 02:23:21.049: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/7, changed state to up
+switch6#
+*Mar  1 02:24:08.461: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/7, changed state to down
+switch6#
+*Mar  1 02:24:10.474: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/7, changed state to up
+switch6#
+*Mar  1 02:24:50.924: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/11, changed state to down
+*Mar  1 02:24:51.931: %LINK-3-UPDOWN: Interface FastEthernet0/11, changed state to down
+switch6#
+*Mar  1 02:24:55.655: %LINK-3-UPDOWN: Interface FastEthernet0/15, changed state to up
+*Mar  1 02:24:56.662: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/15, changed state to up
+switch6#
+*Mar  1 02:28:38.331: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/15, changed state to down
+*Mar  1 02:28:39.338: %LINK-3-UPDOWN: Interface FastEthernet0/15, changed state to down
+switch6#
+*Mar  1 02:28:52.374: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/15, changed state to up
+switch6#
+*Mar  1 02:28:54.186: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/7, changed state to down
+switch6#
+*Mar  1 02:28:54.303: %LINK-3-UPDOWN: Interface FastEthernet0/15, changed state to up
+*Mar  1 02:28:55.192: %LINK-3-UPDOWN: Interface FastEthernet0/7, changed state to down
+switch6#
+*Mar  1 02:28:55.461: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+switch6#
+*Mar  1 02:28:57.449: %LINK-3-UPDOWN: Interface FastEthernet0/5, changed state to up
+*Mar  1 02:28:58.455: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/5, changed state to up
+switch6#
+*Mar  1 02:29:09.302: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to down
+*Mar  1 02:29:10.300: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/5, changed state to down
+switch6#
+*Mar  1 02:29:11.307: %LINK-3-UPDOWN: Interface FastEthernet0/5, changed state to down
+switch6#
+*Mar  1 02:29:13.354: %LINK-3-UPDOWN: Interface FastEthernet0/7, changed state to up
+*Mar  1 02:29:14.360: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/7, changed state to up
+switch6#
+*Mar  1 02:29:18.672: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+switch6#
+*Mar  1 02:29:20.652: %LINK-3-UPDOWN: Interface FastEthernet0/17, changed state to up
+*Mar  1 02:29:20.652: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/19 (1), with switch6 FastEthernet0/17 (22).
+*Mar  1 02:29:20.660: %LINK-3-UPDOWN: Interface FastEthernet0/19, changed state to up
+switch6#
+*Mar  1 02:29:20.660: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/17 (22), with switch6 FastEthernet0/19 (1).
+*Mar  1 02:29:21.658: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/17, changed state to up
+*Mar  1 02:29:21.658: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/19 (1), with switch6 FastEthernet0/17 (22).
+*Mar  1 02:29:21.667: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/19, changed state to up
+switch6#
+*Mar  1 02:29:21.667: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/17 (22), with switch6 FastEthernet0/19 (1).
+*Mar  1 02:29:22.665: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/19 (1), with switch6 FastEthernet0/17 (22).
+*Mar  1 02:29:22.673: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/17 (22), with switch6 FastEthernet0/19 (1).
+switch6#
+*Mar  1 02:29:29.233: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to down
+*Mar  1 02:29:30.223: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/17, changed state to down
+*Mar  1 02:29:30.231: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/19, changed state to down
+switch6#
+*Mar  1 02:29:31.230: %LINK-3-UPDOWN: Interface FastEthernet0/17, changed state to down
+*Mar  1 02:29:31.230: %LINK-3-UPDOWN: Interface FastEthernet0/19, changed state to down
+switch6#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+switch6 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+*Mar  1 02:29:51.119: %LINK-3-UPDOWN: Interface FastEthernet0/14, changed state to up
+*Mar  1 02:29:51.127: %LINK-3-UPDOWN: Interface FastEthernet0/16, changed state to up
+*Mar  1 02:29:51.304: %SW_MATM-4-MACFLAP_NOTIF: Host d493.901b.bea7 in vlan 22 is flapping between port Fa0/14 and port Fa0/16
+*Mar  1 02:29:52.126: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/14, changed state to up
+*Mar  1 02:29:52.142: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/16, changed state to up
+*Mar  1 02:29:53.023: %SW_MATM-4-MACFLAP_NOTIF: Host 6c02.e0da.20f4 in vlan 22 is flapping between port Fa0/16 and port Fa0/14
+*Mar  1 02:29:59.533: %SW_MATM-4-MACFLAP_NOTIF: Host d493.901b.bea7 in vlan 22 is flapping between port Fa0/14 and port Fa0/16
+*Mar  1 02:29:59.617: %SW_MATM-4-MACFLAP_NOTIF: Host 6c02.e0da.20f4 in vlan 22 is flapping between port Fa0/16 and port Fa0/14
+*Mar  1 02:30:14.657: %SW_MATM-4-MACFLAP_NOTIF: Host d493.901b.bea7 in vlan 22 is flapping between port Fa0/14 and port Fa0/16
+*Mar  1 02:30:14.741: %SW_MATM-4-MACFLAP_NOTIF: Host 6c02.e0da.20f4 in vlan 22 is flapping between port Fa0/16 and port Fa0/14
+*Mar  1 02:30:21.343: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/14, changed state to down
+*Mar  1 02:30:21.352: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/16, changed state to down
+*Mar  1 02:30:22.350: %LINK-3-UPDOWN: Interface FastEthernet0/14, changed state to down
+*Mar  1 02:30:22.350: %LINK-3-UPDOWN: Interface FastEthernet0/16, changed state to down
