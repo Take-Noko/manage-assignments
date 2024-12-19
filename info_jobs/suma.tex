@@ -1,5 +1,7 @@
 \documentclass{jlreq}
 \usepackage{url}
+\usepackage{enumerate}
+\usepackage{ulem}
 
 \title{情報と職業 \\ \vspace{0.5cm} レコメンダシステムまとめ}
 
@@ -7,23 +9,54 @@
 \maketitle
 
 \section{システム概要}
-レコメンダシステムはレコメンデーション・エンジン（レコメンダ）が
-ユーザの行動データからパターンを見つけ，ユーザに合うコンテンツを提供する人工知能システム．
+\subsection{一般的なシステム概要}
+レコメンダシステムは
+予め設定した規則や，
+ユーザの行動データからのパターンを元に，ユーザに合うコンテンツを提供するシステム．
 ユーザのコンテンツに対する評価を予測する．
 
-レコメンデーション・システム市場は2024年で約70億ドルに達する．更に5年後には約300億ドルに達する．
-
+レコメンデーション・システム市場は2024年で約70億ドルに達する．更に5年後（2029年）には約300億ドルに達する．
 
 \section{システムの機能}
+\subsection{アルゴリズムごとのレコメンダシステム}
+レコメンダシステムには様々なアルゴリズムが存在する．
+
+主に，
+\begin{enumerate}
+    \item サイト運営者が事前に決めておいた規則に従ってコンテンツを提案するシステム
+    \begin{itemize}
+        \item サイト運営者が決める．飲食店を調べているならば，近場の人気飲食店を表示．
+        コーヒーの商品ページを見ているならば，コーヒーカップの商品を提案．
+        \item ジャンル，ブランドなどのカテゴリによって似ている商品を自動的に提案．
+    \end{itemize}
+    \item 機械学習によるユーザ情報の分析結果から適当なコンテンツを提案するシステム
+    \begin{itemize}
+        \item ユーザが好む画像や音声を機械学習によって分析して，趣味嗜好などのパターンを元にコンテンツを提案
+        \item 別のユーザが一緒に買っている商品を提案，購入する商品が類似している別のユーザの購入履歴を参考に商品を提案する，協調フィルタリング
+    \end{itemize}
+\end{enumerate}
 
 \section{システム構成，規模}
+システム構成としては
+\begin{description}
+    \item[ASP(Application Service Provider)型]
+    外部の企業が提供するレコメンデーション・エンジン（アプリケーション）をインターネット経由で利用する．
+    レコメンデーションするための様々なツールを使用することができる．\uline{低コスト且つスピーディー}．
+    \item[オープンソース型]
+    一般公開されているソースコードを利用し，自社でレコメンドシステムのためのサーバを構築，\uline{カスタマイズ性が高い}．
+    ただし，\dashuline{高い技術力や多くのコストが必要}であるため，導入できる企業は限られる．
+\end{description}
 
 \section{導入による効果}
+ユーザ自身が知ることができなかったコンテンツの提案を行ったり，
+検索の手間の軽減したりと，ユーザエクスペリエンスの向上に繋がる．
+
 収益が5パーセント～15パーセント増加する．
 
 \begin{thebibliography}{99}
     \bibitem{citekey} IBM説明 \url{https://www.ibm.com/jp-ja/think/topics/recommendation-engine}
-    \bibitem{citekey} \url{https://www.bsearchtech.com/blog/know-how/recommendation-system/#:~:text=システムとは？-,レコメンドシステムとは、ユーザのサイト内行動や,実装・活用されています。}
+    \bibitem{citekey} GENEE SEARCH レコメンドシステムとは？7種類のアルゴリズムと選び方を解説 \url{https://www.bsearchtech.com/blog/know-how/recommendation-system/#:~:text=システムとは？-,レコメンドシステムとは、ユーザのサイト内行動や,実装・活用されています。}
+    \bibitem{citekey} \verb|Mordor Intelligence report of Global Recommendation Engine Market Analysis & Growth| \url{https://www.mordorintelligence.com/industry-reports/recommendation-engine-market}
 \end{thebibliography}
 
 \end{document}
