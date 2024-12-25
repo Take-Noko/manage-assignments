@@ -1,5 +1,6 @@
 \documentclass{jlreq}
 \usepackage{listings,jvlisting}
+\usepackage{url}
 
 \title{ネットワーク設計/応用 \\ \vspace{0.3cm} 演習1 レポート}
 \author{学籍番号1270381 宮本武}
@@ -43,14 +44,25 @@ OSコマンドインジェクションによる攻撃及び防御の手法を学
 容易にサーバの機密情報を取得され，情報を悪用される可能性がある．
 このような情報漏洩を許してしまったのは，
 サイトのプログラムのソースコードに問題があったからである．
-ソースコードはPythonで書かれており，
-プロセスを実行する，subprocessモジュール
-内のrun関数によってドメイン検索の処理が呼び出される仕組みであった．
-具体的にはrun関数の引数にshell=Trueと指定することでシェルを呼び出し，
-cmd=""
+
+ドメイン検索はシェルのdigコマンドで行い，その標準出力を検索ページの結果欄に表示させるという仕組みであった．
+問題があったのはsubprocessモジュールのrun関数によるシェル呼び出しの部分で，
+ユーザからの入力をドメイン名としてそのまま単一文字列のコマンドとしてシェルに渡していることで，
+想定外の出力結果を表示させることが可能になっている．
+シェルでは";"（セミコロン）が改行と実質的に同じ意味を持ち，
+一行で複数のコマンドを書くことができる．
+セミコロンで区切った後半の"cat <ファイルパス>"もdigコマンドの後に実行され，
+機密情報が入ったファイルの内容が標準出力として，
+検索ページに表示されたのである．
 
 \subsection{対処方法}
 
 
 \section{感想}
+
+\begin{thebibliography}{99}
+    \bibitem{citekey} Python 3.13 標準ライブラリ サブプロセス管理 \url{https://docs.python.org/ja/3.13/library/subprocess.html}
+    \bibitem{citekey} Bash Reference Manual \url{https://www.gnu.org/software/bash/manual/bash.html}
+\end{thebibliography}
+
 \end{document}
