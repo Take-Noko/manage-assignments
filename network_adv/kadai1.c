@@ -27,6 +27,8 @@ struct my_file *my_fopen (char *filename) {
     fp = (struct my_file *) malloc (sizeof (struct my_file));
     fp->fd = fd;
     // 必要な初期化を加筆する
+    fp->count = 0;
+    fp->index = 0;
     return fp;
   } else {
     return NULL;		/* オープンできなかった場合 */
@@ -36,14 +38,29 @@ struct my_file *my_fopen (char *filename) {
 int my_fclose (struct my_file *fp) {
   int r;
   // OSに対してクローズ処理を要求
+  r = close (fp->fd);
+
   // ファイル構造体用のメモリー領域を開放する
+  free (fp);
   return r;
 }
 
-int my_fgetc(struct my_file *fp) {
+int my_fgetc (struct my_file *fp) {
   int c, size;
   // バッファーが空ならOSから read する
+  if (fp->index == fp->count) {
+    size = read(fp->fd, fp->buffer, MyBufferSize);
+    fp->index = 0;
+    fp->count = size;
+    // ファイルからデータを読み込めなかった場合はEOFを返す
+    if (size == fp->index || size < 0) {
+      return EOF;
+    }
+  }
+
   // バッファーから1文字取って返す
+  c = fp->buffer[fp->index];
+  fp->index ++;
   return c;
 }
 
